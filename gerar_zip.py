@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+from zipfile import ZipFile
+
+# Conteúdo dos arquivos do site
+site_files = {
+    "index.html": """<!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
@@ -70,3 +74,100 @@
   <script src="script.js"></script>
 </body>
 </html>
+""",
+
+    "style.css": """body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f8f9fa;
+  color: #333;
+}
+.container {
+  max-width: 900px;
+  margin: auto;
+  padding: 20px;
+}
+.topo {
+  background-color: #004080;
+  color: white;
+  padding: 10px 0;
+}
+.topo h1 {
+  margin: 0;
+}
+.topo nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+}
+.topo nav a {
+  color: white;
+  text-decoration: none;
+}
+.hero {
+  background-color: #e6f0ff;
+  text-align: center;
+  padding: 60px 20px;
+}
+.hero h2 {
+  font-size: 2em;
+}
+.btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #004080;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+section {
+  margin: 40px 0;
+}
+.servicos {
+  list-style: none;
+  padding: 0;
+}
+.servicos li {
+  padding: 5px 0;
+}
+blockquote {
+  background: #f1f1f1;
+  padding: 15px;
+  border-left: 5px solid #004080;
+  margin: 20px 0;
+}
+form input, form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+button {
+  background-color: #004080;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+}
+footer {
+  background: #222;
+  color: white;
+  text-align: center;
+  padding: 15px;
+}
+""",
+
+    "script.js": """// Futuras funcionalidades podem ser adicionadas aqui
+console.log("Site carregado com sucesso.");
+"""
+}
+
+# Criação do arquivo .zip
+with ZipFile("site-professor.zip", "w") as zipf:
+    for filename, content in site_files.items():
+        zipf.writestr(filename, content)
+
+print("Arquivo site-professor.zip criado com sucesso.")
